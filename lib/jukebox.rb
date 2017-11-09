@@ -24,19 +24,20 @@ def list(songs)
   end
 end
 
-def play(songs)
+def play(songs) 
   puts "Please enter a song name or number:"
   response = gets.chomp
-  songs.each do |song|
-    if song == response
-      puts "Playing #{response}"
-    elsif response.to_i > 0 && response.to_i < songs.length
-      puts "Playing #{songs[response.to_i-1]}"
-    else
-      puts "Invalid input, please try again"
-    end
-  end
-end
+  song_check = songs.find do |song| 
+    song == response
+  end 
+  if response.to_i != 0 && response.to_i <= songs.length 
+    puts "Playing #{songs[response.to_i - 1]}"
+  elsif song_check != nil 
+    puts "Playing #{song_check}"
+  else 
+    puts "Invalid input, please try again"
+  end 
+end 
 
 def exit_jukebox
   puts "Goodbye"
